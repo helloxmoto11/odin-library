@@ -4,9 +4,34 @@ let bookCount = 0;
 const body = document.querySelector('.mainSection');
 body.appendChild(tempCard());
 
-function addBookToLibrary(id) {
-    const book = new Book('Harry Potter', 'J.K. Rowling', 343, false, id);
+function addBookToLibrary() {
+    const title = document.getElementById('title');
+    const author = document.getElementById('author');
+    const pages = document.getElementById('pages');
+    const isRead = document.getElementById('readCheckBox');
+
+    if (title.value === ''
+        || author.value === ''
+        || pages.value === '') {
+        return;
+    }
+
+    const book = new Book();
+    book.title = title.value;
+    book.author = author.value;
+    book.pages = pages.value;
+    book.isRead = isRead.checked;
+    book.id = bookCount;
+
+
     library.push(book);
+    bookCount++;
+
+    title.innerText = '';
+    author.innerText = '';
+    pages.innerText = '';
+    isRead.checked = false;
+    hideForm();
     const placeHolder = document.querySelector('#placeHolder');
     const newBook = newCard(book);
     body.insertBefore(newBook, placeHolder);
@@ -39,8 +64,10 @@ function tempCard() {
 
     card.addEventListener('click', () => {
         console.log('you clicked a card.');
-        addBookToLibrary(bookCount);
-        bookCount++;
+        document.querySelector('.form-container').style.display = 'block';
+        document.querySelector('#addBookBtn').addEventListener('click', () => {
+            addBookToLibrary()
+        });
     })
     return card;
 }
@@ -54,7 +81,7 @@ function newCard(book) {
     cardHeaderDiv.className = 'cardHeader';
 
     const bookNum = document.createElement('p');
-    const id = Number(card.id) +1;
+    const id = Number(card.id) + 1;
     bookNum.innerText = id + "";
     bookNum.className = 'bookNum';
 
@@ -101,7 +128,7 @@ function deleteBook(e) {
     console.log(card);
     let id = card.id;
     let book = library.findIndex(book => {
-       return book.id === Number(id);
+        return book.id === Number(id);
     });
 
     library.splice(book, 1);
@@ -117,3 +144,8 @@ function deleteAllBooks() {
         body.removeChild(body.firstChild);
     }
 }
+
+function hideForm() {
+    document.querySelector('.form-container').style.display = 'none';
+}
+
