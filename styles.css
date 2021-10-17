@@ -1,0 +1,61 @@
+body {
+    background-color: lightsteelblue;
+    display: flex;
+}
+
+.header {
+    text-align: center;
+    font-size: 30px;
+}
+
+.navSection {
+    width: 200px;
+    min-width: 200px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 200px;
+    gap: 20px;
+}
+
+.navSection button {
+    border-radius: 15px;
+    height: 30px;
+
+}
+
+
+.mainSection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    padding: 10px;
+    height: 300px;
+    width: 200px;
+    box-shadow: 0 4px 8px 0;
+    background-color: white;
+    text-align: center;
+}
+
+.readBox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.book.title {
+    font-size: 25px;
+}
+
+.author {
+    font-size: 18px;
+}
+
+#btnDelete {
+    width: 100%;
+}
