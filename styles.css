@@ -1,36 +1,37 @@
 body {
     background-color: lightsteelblue;
     display: flex;
+    min-width: 950px;
+    border-style: solid;
 }
 
 .header {
     text-align: center;
     font-size: 30px;
+    border-style: solid;
 }
 
 .navSection {
     width: 200px;
     min-width: 200px;
-    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     margin-top: 200px;
     gap: 20px;
-}
-
-.navSection button {
-    border-radius: 15px;
-    height: 30px;
-
+    text-align: center;
+    font-size: 25px;
+    border-style: solid;
 }
 
 
 .mainSection {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 20px;
+    border-style: solid;
+    padding: 50px;
 }
 
 .card {
@@ -40,6 +41,35 @@ body {
     box-shadow: 0 4px 8px 0;
     background-color: white;
     text-align: center;
+}
+
+.card .placeHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#xDiv {
+    background: silver;
+    height: 10px;
+    width: 50px;
+    position: relative;
+    left: 40%;
+    top: 50%;
+}
+
+#yDiv {
+    background: silver;
+    width: 10px;
+    height: 50px;
+    position: relative;
+    top: 40%;
+    left: 50%;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
 }
 
 .readBox {

@@ -1,61 +1,73 @@
-let library = []
+let library = [];
+let bookCount = 0;
 
-function addBookToLibrary(book) {
+const body = document.querySelector('.mainSection');
+body.appendChild(tempCard());
+
+function addBookToLibrary(id) {
+    const book = new Book('Harry Potter', 'J.K. Rowling', 343, false, id);
     library.push(book);
+    const placeHolder = document.querySelector('#placeHolder');
+    const newBook = newCard(book);
+    body.insertBefore(newBook, placeHolder);
 }
 
-function Book(title, author, pages, isRead) {
+function Book(title, author, pages, isRead, id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
+    this.id = id;
     this.info = () => {
         let read = this.isRead ? 'already read.' : 'not read yet.';
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${read}`;
+        return `book id: ${this.id}, ${this.title} by ${this.author}, ${this.pages} pages, ${read}`;
     }
 }
 
-const book = new Book('Harry Potter', 'J.K. Rowling', 343, false);
-const book2 = new Book('The Hobbit', 'J.R. Tolkien', 121, true);
+function tempCard() {
+    const card = document.createElement('div');
+    card.className = 'card placeHolder';
+    card.id = 'placeHolder';
 
-addBookToLibrary(book);
-addBookToLibrary(book2)
+    const xDiv = document.createElement('div');
+    xDiv.id = 'xDiv';
 
-addBookToLibrary(book)
+    const yDiv = document.createElement('div');
+    yDiv.id = 'yDiv';
 
-addBookToLibrary(book2)
+    card.append(xDiv, yDiv);
 
-addBookToLibrary(book)
-addBookToLibrary(book2)
-addBookToLibrary(book)
-addBookToLibrary(book2)
-
-addBookToLibrary(book);
-
-addBookToLibrary(book2);
-
-
-addBookToLibrary(book)
-addBookToLibrary(book2)
-addBookToLibrary(book)
-addBookToLibrary(book2)
-
-addBookToLibrary(book)
-addBookToLibrary(book2)
-
-addBookToLibrary(book)
-addBookToLibrary(book2)
-
-const body = document.querySelector('.mainSection');
-
-
-library.forEach(book => {
-    body.appendChild(newCard(book))
-})
+    card.addEventListener('click', () => {
+        console.log('you clicked a card.');
+        addBookToLibrary(bookCount);
+        bookCount++;
+    })
+    return card;
+}
 
 function newCard(book) {
     const card = document.createElement('div');
     card.className = 'card';
+    card.id = book.id;
+
+    const cardHeaderDiv = document.createElement('div');
+    cardHeaderDiv.className = 'cardHeader';
+
+    const bookNum = document.createElement('p');
+    const id = Number(card.id) +1;
+    bookNum.innerText = id + "";
+    bookNum.className = 'bookNum';
+
+    const readBox = document.createElement('div');
+    readBox.className = 'readBox';
+    const isRead = document.createElement('p');
+    isRead.innerText = 'Read'
+    const checkBox = document.createElement('input');
+    checkBox.type = 'checkbox';
+    checkBox.checked = book.isRead;
+
+    readBox.append(isRead, checkBox);
+    cardHeaderDiv.append(bookNum, readBox);
 
     const title = document.createElement('p');
     title.innerText = book.title;
@@ -68,26 +80,16 @@ function newCard(book) {
     const numPages = document.createElement('p');
     numPages.innerText = book.pages + ' pages.';
 
-    const readBox = document.createElement('div');
-    readBox.className = 'readBox';
-    const isRead = document.createElement('p');
-    isRead.innerText = 'Read'
-    const checkBox = document.createElement('input');
-    checkBox.type = 'checkbox';
-    checkBox.checked = book.isRead;
-
     const btnDelete = document.createElement('button');
     btnDelete.id = 'btnDelete';
     btnDelete.innerText = 'Remove Book?'
     btnDelete.addEventListener('click', deleteBook)
 
-    readBox.append(isRead, checkBox)
-
     card.append(
+        cardHeaderDiv,
         title,
         author,
         numPages,
-        readBox,
         btnDelete
     )
 
@@ -95,8 +97,23 @@ function newCard(book) {
 }
 
 function deleteBook(e) {
-    console.log(e.target);
-    const card = e.target.parentNode;
+    const card = e.target.parentElement;
+    console.log(card);
+    let id = card.id;
+    let book = library.findIndex(book => {
+       return book.id === Number(id);
+    });
+
+    library.splice(book, 1);
+    library.forEach(book => {
+        console.log(book.info());
+    });
     body.removeChild(card);
     //todo this removes book but need to also remove it from library back end.
+}
+
+function deleteAllBooks() {
+    while (body.firstChild) {
+        body.removeChild(body.firstChild);
+    }
 }
