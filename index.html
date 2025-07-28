@@ -8,13 +8,39 @@
     <script src="index.js" defer></script>
 </head>
 <body>
-  <main>
-      <h1>Library</h1>
-      <div class="library">
+<main>
+    <h1>Library</h1>
+    <div class="library">
         <div id="newBook" class="book newBook">
-            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#434343"><path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#434343">
+                <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z"/>
+            </svg>
         </div>
-      </div>
-  </main>
+    </div>
+    <div class="scrim hidden">
+        <div id="add-form-container">
+            <h2>Add New Book</h2>
+            <form action="#">
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" id="title">
+                </div>
+                <div>
+                    <label for="author">Author</label>
+                    <input type="text" id="author">
+                </div>
+                <div>
+                    <label for="pages">Pages</label>
+                    <input type="text" id="pages">
+                </div>
+                <div>
+                    <label for="read" id="read-label">Read?</label>
+                    <input type="checkbox" id="read">
+                </div>
+                <button id="btn-add-book" type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</main>
 </body>
 </html>

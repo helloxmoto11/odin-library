@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 @font-face {
@@ -30,7 +31,7 @@ h1 {
     border: 1px solid lightgray;
     border-radius: 1rem;
     padding: 1rem;
-    height: 250px;
+    height: 275px;
     width: 200px;
     min-width: 200px;
     box-shadow: 2px 2px 4px gray;
@@ -40,10 +41,20 @@ h1 {
     justify-content: center;
     gap: 2rem;
     text-align: center;
+    position: relative;
+}
+
+.btn-delete {
+    width: 48px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background-color: transparent;
 }
 
 .newBook {
-    background: rgba(0,0,0, 0.05);
+    background: rgba(0, 0, 0, 0.05);
     font-size: 3rem;
     font-weight: normal;
     color: black;
@@ -58,3 +69,65 @@ h1 {
     display: flex;
     gap: .25rem;
 }
+
+
+.scrim {
+    position: fixed;
+    z-index: 99;
+    background-color: rgba(128, 128, 128, 0.5);
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+#add-form-container {
+    background-color: white;
+    z-index: 100;
+    max-width: 320px;
+    position: fixed;
+    left: calc(100% / 2 - 160px);
+    top: 200px;
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: 2px 2px 4px gray;
+}
+
+h2 {
+    text-align: center;
+}
+
+#add-form-container div {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-left: .25rem;
+    font-size: 1.25rem;
+}
+
+#read-label {
+    display: inline;
+    margin-right: .25rem;
+    user-select: none;
+}
+
+
+input[type="text"] {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 1.25rem;
+    border-radius: .25rem;
+    padding: .25rem
+
+}
+
+button {
+    width: 100%;
+    border-radius: .25rem;
+    padding: .5rem;
+    font-size: 1.25rem;
+}
+
