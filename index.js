@@ -1,5 +1,6 @@
 const library = [];
 const libraryElement = document.querySelector('.library');
+const newBookElement = document.getElementById("newBook");
 
 function Book(title, author, numPages, read) {
     this.title = title;
@@ -14,9 +15,8 @@ function addBook(title, author, numPages, read) {
     const newBook = new Book(title, author, numPages, read);
     library.push(newBook);
 }
-function toggleRead(e) {
 
-}
+
 function createBookElements() {
     library.forEach((book) => {
         const bookElement = document.createElement("div");
@@ -55,7 +55,7 @@ function createBookElements() {
         bookElement.appendChild(numPages)
         bookElement.appendChild(readWrapper)
 
-        libraryElement.appendChild(bookElement);
+        libraryElement.insertBefore(bookElement, newBookElement);
     })
 }
 
